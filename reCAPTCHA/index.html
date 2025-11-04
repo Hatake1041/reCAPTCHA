@@ -4,11 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>私のWebページ</title>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+    
+    <style>
+        .grid-container {
+        /* これでGridレイアウトを宣言 */
+        display: grid;
+        
+        /* 3列に分割 (1frは「利用可能なスペースの1等分」) */
+        grid-template-columns: 1fr 1fr 1fr;
+        
+        /* アイテム間の隙間 */
+        gap: 10px;
+        }
+
+        /* 以下は見た目を整えるためのスタイル（任意） */
+        .grid-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+    </style>
+
 </head>
 <body>
     
-    <h1>こんにちは、世界！</h1>
-    <p>VSCodeとGitでWebページを作っています。</p>
+    <h1>自分が人間か不安になった方へ</h1>
+    <p>reCAPTCHAを使って自分が本当に人間なのか確認してみましょう！</p>
+
+    <div class="grid-container">
+        <div class="grid-item" id="recaptcha-widget-1"></div>
+        <div class="grid-item" id="recaptcha-widget-2"></div>
+        <div class="grid-item" id="recaptcha-widget-3"></div>
+        <div class="grid-item" id="recaptcha-widget-4"></div>
+        <div class="grid-item" id="recaptcha-widget-5"></div>
+        <div class="grid-item" id="recaptcha-widget-6"></div>
+        <div class="grid-item" id="recaptcha-widget-7"></div>
+        <div class="grid-item" id="recaptcha-widget-8"></div>
+        <div class="grid-item" id="recaptcha-widget-9"></div>
+    </div>
+
+    <script type="text/javascript">
+        // スクリプトが読み込まれたら実行される関数
+        var onRecaptchaLoad = function() {
+            
+            var sitekey = '6LfvdgEsAAAAAGjvVaIobAQsdJqq6mVQ894AaUHh';
+            
+            // 1から9までループ
+            for (var i = 1; i <= 9; i++) {
+            
+            // 'recaptcha-widget-1', 'recaptcha-widget-2', ... というIDに
+            // reCAPTCHAを描画
+            grecaptcha.render('recaptcha-widget-' + i, {
+                'sitekey' : sitekey
+            });
+            }
+        };
+    </script>
 
 </body>
 </html>
